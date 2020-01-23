@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 function findLongestWordLength(str) {
     var longest = 0;
     var result = str.split(" ");

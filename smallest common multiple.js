@@ -1,25 +1,22 @@
 function smallestCommons(arr) {
-    var arr0 = []
-    var arr2 = []
-    var arr1 = []
-    var newArr
-    arr.sort(function(a, b){return a-b});
-    for (var i= arr[0];i<=arr[1];i++){
-      arr0.push(i);
-    }
-    for (var j= 1;j<=60;j++){
-      arr1.push(arr[1]*j)
-    }
-    for(var m =0;m<arr[0];m++){
-      newArr = arr2.filter(x => {
-  return x % arr[m] === 0})
-    }
-    console.log(newArr);
-    console.log(arr1)
-    return;
-  // 
+  var range = [];
+  for (var i = Math.max(arr[0], arr[1]); i >= Math.min(arr[0], arr[1]); i--) {
+    range.push(i);
   }
-  
-  
-  smallestCommons([1,5]);
-  
+  // can use reduce() in place of this block
+  var lcm = range[0];
+  for (i = 1; i < range.length; i++) {
+    var GCD = gcd(lcm, range[i]);
+    lcm = (lcm * range[i]) / GCD;
+  }
+  return lcm;
+
+  function gcd(x, y) {
+    // Implements the Euclidean Algorithm
+    if (y === 0) return x;
+    else return gcd(y, x % y);
+  }
+}
+
+// test here
+smallestCommons([1, 5]);
